@@ -1,7 +1,7 @@
             .data
 prompt1:    .asciiz "please enter the Multiplicand\n"
 prompt2:    .asciiz "please enter the product\n"
-prompt3:    .asciiz "\tMultiplicand\tproduct\n"
+prompt3:    .asciiz "\t\tMultiplicand\tproduct\n"
 prompt4:    .asciiz "\t\t"
 prompt5:    .asciiz "\n"
 
@@ -50,7 +50,7 @@ main:
             addi    $t1, $0, 4
 
 
-            li		$v0, 4 
+            li		$v0, 4
             la      $a0, prompt3
             syscall
 
@@ -87,7 +87,7 @@ Loop:
 
             sll     $t0, $t0, 1
             sll     $t2, $s0, 4
-            or      $t0, $t0, $t2             # merge the products
+            add     $t0, $t0, $t2             # merge the products
             srl     $t0, $t0, 1
 
             j       Loop
@@ -117,6 +117,9 @@ Exit:
             la      $a0, prompt5
             syscall
 
+            li		$v0, 4
+            la      $a0, prompt5
+            syscall
 
             # li      $v0, 10
             # syscall
